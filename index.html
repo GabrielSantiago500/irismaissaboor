@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doce Encanto Confeitaria</title>
+
+  <style>
+    /* ===== RESET BÁSICO ===== */
+    /* Remove espaçamentos padrão do navegador e facilita o controle do layout */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ===== ESTILO GERAL DO SITE ===== */
+    body {
+      /* Define a fonte principal do site */
+      font-family: Arial, Helvetica, sans-serif;
+
+      /* Cria um fundo suave em tom rosa claro */
+      background: linear-gradient(to bottom, #fff7fb, #ffeef5);
+
+      /* Define a cor padrão dos textos */
+      color: #6b3d4d;
+    }
+
+    /* Classe usada para limitar a largura do conteúdo e centralizar na tela */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ===== CABEÇALHO ===== */
+    header {
+      /* Fundo branco com leve transparência */
+      background-color: rgba(255, 255, 255, 0.95);
+
+      /* Linha suave na parte de baixo para separar do banner */
+      border-bottom: 2px solid #f7c9da;
+
+      /* Espaçamento interno do cabeçalho */
+      padding: 18px 0;
+
+      /* Deixa o menu fixo no topo ao rolar a página */
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    /* Organiza logo e menu lado a lado */
+    .topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* Estilo do nome da confeitaria */
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #c95d8c;
+    }
+
+    /* Texto menor abaixo do nome principal */
+    .logo span {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: normal;
+      color: #a96a84;
+      margin-top: 4px;
+    }
+
+    /* ===== MENU ===== */
+    nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Estilo dos links do menu */
+    nav a {
+      text-decoration: none;
+      color: #a04f73;
+      font-weight: bold;
+      background-color: #ffe4ef;
+      padding: 10px 16px;
+      border-radius: 999px;
+      transition: 0.3s;
+    }
+
+    /* Efeito ao passar o mouse nos links */
+    nav a:hover {
+      background-color: #f8bfd5;
+      transform: translateY(-2px);
+    }
+
+    /* ===== BANNER PRINCIPAL ===== */
+    .hero {
+      /* Dá bastante espaço interno para destacar a primeira área do site */
+      padding: 70px 20px;
+      text-align: center;
+
+      /* Fundo em degradê para lembrar um site delicado de confeitaria */
+      background: linear-gradient(rgba(255, 240, 247, 0.82), rgba(255, 240, 247, 0.82)),
+        url('https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=1400&q=80') center/cover;
+    }
+
+    /* Título principal do banner */
+    .hero h1 {
+      font-size: 2.8rem;
+      color: #bf4f82;
+      margin-bottom: 15px;
+    }
+
+    /* Texto explicativo logo abaixo do título */
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Área dos botões principais do banner */
+    .hero-botoes {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    /* Estilo padrão para botões principais */
+    .botao {
+      display: inline-block;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    /* Botão rosa principal */
+    .botao-rosa {
+      background-color: #e96d9a;
+      color: white;
+    }
+
+    /* Botão rosa claro secundário */
+    .botao-claro {
+      background-color: #fff;
+      color: #bf4f82;
+      border: 2px solid #f3b6cd;
+    }
+
+    /* Efeito nos botões ao passar o mouse */
+    .botao:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ===== SEÇÕES GERAIS ===== */
+    section {
+      padding: 70px 0;
+    }
+
+    /* Título das seções */
+    .titulo-secao {
+      text-align: center;
+      font-size: 2rem;
+      color: #c95d8c;
+      margin-bottom: 18px;
+    }
+
+    /* Pequeno texto abaixo do título da seção */
+    .subtitulo-secao {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+      color: #7b5b66;
+    }
+
+    /* ===== SEÇÃO HISTÓRIA ===== */
+    .historia-box {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 30px;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 12px 30px rgba(201, 93, 140, 0.08);
+    }
+
+    /* Imagem da seção história */
+    .historia-box img {
+      width: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+      min-height: 320px;
+    }
+
+    /* Texto da história */
+    .historia-texto p {
+      margin-bottom: 16px;
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    /* ===== SEÇÃO DOCES ===== */
+    .grade-doces {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    /* Cada card representa um doce ou categoria de doce */
+    .card-doce {
+      background-color: #fff;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(201, 93, 140, 0.08);
+      transition: 0.3s;
+    }
+
+    /* Efeito ao passar o mouse sobre os cards */
+    .card-doce:hover {
+      transform: translateY(-6px);
+    }
+
+    /* Imagem do card */
+    .card-doce img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+    }
+
+    /* Área interna de texto do card */
+    .conteudo-card {
+      padding: 20px;
+    }
+
+    /* Título do doce */
+    .conteudo-card h3 {
+      color: #b84c7d;
+      margin-bottom: 10px;
+    }
+
+    /* Descrição do doce */
+    .conteudo-card p {
+      line-height: 1.6;
+      color: #745862;
+      margin-bottom: 15px;
+    }
+
+    /* Preço ou destaque opcional */
+    .destaque-card {
+      font-weight: bold;
+      color: #e96d9a;
+    }
+
+    /* ===== SEÇÃO REDES SOCIAIS ===== */
+    .redes {
+      text-align: center;
+    }
+
+    /* Caixa que agrupa os botões de contato */
+    .redes-box {
+      background-color: #fff;
+      border-radius: 24px;
+      padding: 35px;
+      box-shadow: 0 12px 30px rgba(201, 93, 140, 0.08);
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    /* Texto dentro da área de redes */
+    .redes-box p {
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    /* Organiza os botões das redes sociais */
+    .botoes-redes {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    /* Botão do WhatsApp */
+    .whatsapp {
+      background-color: #25d366;
+      color: white;
+    }
+
+    /* Botão do Instagram */
+    .instagram {
+      background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+      color: white;
+    }
+
+    /* ===== RODAPÉ ===== */
+    footer {
+      background-color: #fff;
+      border-top: 2px solid #f7c9da;
+      text-align: center;
+      padding: 25px 15px;
+      color: #8a6473;
+      font-size: 0.95rem;
+    }
+
+    /* ===== RESPONSIVIDADE ===== */
+    /* Ajusta o layout para tablets */
+    @media (max-width: 900px) {
+      .historia-box {
+        grid-template-columns: 1fr;
+      }
+
+      .grade-doces {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+    }
+
+    /* Ajusta o layout para celulares */
+    @media (max-width: 600px) {
+      .logo {
+        font-size: 1.6rem;
+      }
+
+      .hero {
+        padding: 55px 15px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .grade-doces {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== CABEÇALHO DO SITE ===== -->
+  <header>
+    <div class="container topo">
+      <!-- Nome da confeitaria -->
+      <div class="logo">
+        Iris Mais Sabor
+        <span>Confeitaria com amor</span>
+      </div>
+
+      <!-- Menu principal com links para as seções da página -->
+      <nav>
+        <a href="#historia">Nossa História</a>
+        <a href="#doces">Nossos Doces</a>
+        <a href="#redes">Redes Sociais</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== BANNER PRINCIPAL ===== -->
+  <section class="hero">
+    <div class="container">
+      <!-- Título principal para causar uma boa primeira impressão -->
+      <h1>Bem-vindo à Iris mais sabor!</h1>
+
+      <!-- Texto de apresentação da confeitaria -->
+      <p>
+        Sabores feitos com carinho, delicadeza e aquele toque especial que transforma cada doce em um momento inesquecível.
+      </p>
+
+      <!-- Botões que levam para as partes mais importantes do site -->
+      <div class="hero-botoes">
+        <a href="#historia" class="botao botao-rosa">Conheça Nossa História</a>
+        <a href="#doces" class="botao botao-claro">Ver Nossos Doces</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO DA HISTÓRIA DA CLIENTE ===== -->
+  <section id="historia">
+    <div class="container">
+      <h2 class="titulo-secao">Nossa História</h2>
+      <p class="subtitulo-secao">
+   <!-- TEXTO DA HISTÓRIA FORMATADO -->
+<div class="historia-texto">
+
+  <p>
+    A confeitaria sempre esteve presente na minha vida mesmo antes de eu perceber. 
+    Desde pequena, eu era aquela que ficava na cozinha ao lado da minha mãe, observando tudo, esperando uma chance de mexer a massa, ajudar no fogão… 
+    Eu já amava aquilo, mesmo sem entender que ali nascia um sonho.
+  </p>
+
+  <p>
+    E existe uma lembrança que hoje carrega um significado que eu nunca imaginei e chega ser engraçado kk.
+  </p>
+
+  <p>
+    Quando eu era criança, passava uma novela onde uma mulher vendia brigadeiros na rua para pagar a faculdade do filho. 
+    Era uma história difícil… sofrida.
+  </p>
+
+  <p>
+    E, em tom de brincadeira, meu irmão olhava pra mim e dizia:
+  </p>
+
+  <p><strong>“olha você ali”.</strong></p>
+
+  <p>
+    E eu respondia, sem pensar duas vezes:
+  </p>
+
+  <p><strong>“não… eu não vou ser isso.</strong></p>
+
+  <p>
+    Porque, pra mim, aquilo não era sonho. Era luta demais. Era dor demais.
+    Mas o tempo… ele ensina. E a vida… ela ressignifica.
+  </p>
+
+  <p>
+    Hoje, eu vendo não só brigadeiros, vendo Doces e bolos. Mas não com sofrimento. Com amor.
+    Não por falta de opção.
+    Mas por propósito.
+  </p>
+
+  <p>
+    E tudo começou quando o mundo parou… e eu precisei recomeçar.
+  </p>
+
+  <p>
+    Na pandemia, me vi sem trabalho, sem direção, com medo e cheia de incertezas.
+    Foi ali que nasceu a minha virada.
+  </p>
+
+  <p>
+    Comecei com algo simples: bolos no copo e, contra todos os meus próprios medos… deu certo.
+    Os elogios vieram. Os pedidos cresceram. E junto com eles, nasceu em mim uma certeza que mudou tudo:
+  </p>
+
+  <p><strong>eu não estava só tentando… eu estava vivendo um dom.</strong></p>
+
+  <p>
+    Me desafiei. Errei. Aprendi. Cresci.
+  </p>
+
+  <p>
+    Saí dos bolos no copo, mergulhei em novos doces, me arrisquei nos bolos personalizados… e ali, eu me encontrei de verdade.
+  </p>
+
+  <p>
+    Hoje, sou cake designer. Sou chef confeiteira. E vivo exclusivamente da confeitaria.
+  </p>
+
+  <p>
+    Aquilo que um dia eu disse que não seria… se tornou exatamente o que me sustenta, me move e me orgulha todos os dias.
+  </p>
+
+  <p>
+    E não… não tem mais dor nisso.
+  </p>
+
+  <p><strong>Tem força. Tem história. Tem conquista.</strong></p>
+
+  <p>
+    Se hoje você olhar meus doces antigos e os de agora, você vai ver mais do que evolução.
+    Você vai ver transformação.
+  </p>
+
+  <p>
+    Porque não foi só a minha confeitaria que cresceu… fui eu.
+  </p>
+
+  <p>
+    E eu ainda não cheguei onde quero. Mas tenho certeza de uma coisa:
+  </p>
+
+  <p><strong>eu transformei aquilo que parecia sofrimento… em um dos maiores amores da minha vida.</strong></p>
+
+  <p><strong>E isso é só o começo.</strong></p>
+
+</div>
+
+      <div class="historia-box">
+        <!-- Imagem ilustrativa da confeitaria ou da cliente -->
+        <img src="imagens/Iris.ela.jpeg">
+        <!-- Texto da história da cliente -->
+        <div class="historia-texto">
+          <p>
+            A Iris Mais Sabor nasceu de um sonho simples: transformar amor em sabor. Tudo começou com receitas feitas em casa, para familiares e amigos, em momentos especiais cheios de carinho.
+          </p>
+
+          <p>
+            Com o tempo, cada elogio, cada encomenda e cada sorriso recebido fortaleceram ainda mais a vontade de crescer e levar doces artesanais para mais pessoas.
+          </p>
+
+          <p>
+            Hoje, este espaço representa dedicação, capricho e uma paixão verdadeira por criar bolos, brigadeiros e sobremesas que deixam qualquer ocasião ainda mais especial.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO DOS DOCES ===== -->
+  <section id="doces">
+    <div class="container">
+      <h2 class="titulo-secao">Nossos Doces</h2>
+      <p class="subtitulo-secao">
+        Aqui você pode mostrar os principais doces vendidos pela confeitaria. Depois podemos trocar imagens, descrições e nomes conforme os produtos reais da cliente.
+      </p>
+
+      <div class="grade-doces">
+        <!-- Card 1: exemplo de doce -->
+        <div class="card-doce">
+          <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=1200&q=80" alt="Brigadeiros gourmet" />
+          <div class="conteudo-card">
+            <h3>Doces a pronta entregas</h3>
+            <p>
+              Doces artesanais feitos com ingredientes selecionados,ideais para a aquela vontade de doce
+            <div class="destaque-card"><a href="https://wa.me/5513981659318?text=Olá%20quero%20ver%20os%20doces%20disponíveis">
+  Pedir pelo WhatsApp
+</a></div>
+          </div>
+        </div>
+
+        <!-- Card 2: exemplo de doce -->
+        <div class="card-doce">
+          <img src="https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80" alt="Bolos decorados" />
+          <div class="conteudo-card">
+            <h3>Encncomenda para festa</h3>
+            <p>
+              Doces personalizados para aniversários, comemorações e datas especiais, com sabor e beleza em cada detalhe.
+            </p>
+            <div class="destaque-card"><a href="https://wa.me/5513981659318?text=Olá%20quero%20fazer%20uma%20encomenda%20para%20festa">
+  Solicitar orçamento
+</a></div>
+          </div>
+        </div>
+
+        <!-- Card 3: exemplo de doce -->
+        <div class="card-doce">
+          <img src="https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=1200&q=80" alt="Cupcakes e doces finos" />
+          <div class="conteudo-card">
+            <h3>Cupcakes e Doces Finos</h3>
+            <p>
+              Uma seleção delicada e charmosa para encantar clientes que procuram sabor, beleza e apresentação impecável.
+            </p>
+            <div class="destaque-card"><a href="https://wa.me/5513981659318?text=Olá%20quero%20ver%20o%20cardápio%20de%20dia%20das%20mães">
+  Ver cardápio especial
+</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO DAS REDES SOCIAIS ===== -->
+  <section id="redes" class="redes">
+    <div class="container">
+      <h2 class="titulo-secao">Fale com a Gente</h2>
+      <p class="subtitulo-secao">
+        Aqui o cliente pode ir direto para as redes sociais da confeitaria e entrar em contato rapidamente.
+      </p>
+
+      <div class="redes-box">
+        <p>
+          Clique nos botões abaixo para falar pelo WhatsApp ou conhecer o Instagram da confeitaria. Depois, basta trocar os links pelos links reais da cliente.
+        </p>
+
+        <div class="botoes-redes">
+          <!-- Botão que leva para o WhatsApp -->
+          <a href="https://wa.me/5513981659318?text=Olá%20quero%20fazer%20um%20pedido" target="_blank" class="botao whatsapp">Ir para o WhatsApp</a>
+
+          <!-- Botão que leva para o Instagram -->
+          <a href="https://www.instagram.com/irismaissaboor/" target="_blank" class="botao instagram">Ir para o Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer>
+    <!-- Texto final do site -->
+    <p>© 2026 Iris mais sabor - Feito com carinho para adoçar momentos especiais.</p>
+  </footer>
+</body>
+</html>
